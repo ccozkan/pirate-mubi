@@ -2,24 +2,24 @@
 
 this one scrapes movies from the mubi.com now showing page, then looks for magnet links for those and hopefully finds them :D
 
-you'll need to have torrent-hound in your system in order to search for magnet links.
+you'll need to have torrent-hound in your system in order to search for magnet links. 
 
 Install the required packages
 
 ```
-pip2 install --user torrent-hound
+wget https://raw.githubusercontent.com/baddymaster/torrent-hound/master/torrent-hound.py
 pip3 install --user -r requirements.txt
 ```
 Run the command and to get the output 
 
 ```
-python3 getMovies.py
+python3 get_movies.py
 ```
 
 Also for later use you can save the output as text file in linux systems.
 
 ```
-python3 getMovies.py > output.txt
+python3 get_movies.py > output.txt
 ```
 Example output looks like this.
 
