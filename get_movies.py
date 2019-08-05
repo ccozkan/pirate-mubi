@@ -34,21 +34,26 @@ for movie in range(0,len(movies)):
     print('poster: ' + movie_list[movie]['poster'])
     
     print('----------------------------------------------------')
-    torrent = subprocess.check_output(['torrent-hound','-q',str(movie_list[movie]['title']) + ' ' + movie_list[movie]['year']]).decode()
+
     try: 
-        torrent = subprocess.check_output(['torrent-hound','-q',str(movie_list[movie]['title']) + ' ' + movie_list[movie]['year']]).decode()
+        title = movie_list[movie]['title']
+        year = movie_list[movie]['year']
+
+        print(title)
+        print(year)
+        title = title.replace("'", "")
+
+        torrent = subprocess.check_output(['python2.7', 'torrent-hound.py','-q', title + ' ' + year]).decode()
         torrent = ast.literal_eval(torrent)
 
         movie_list[movie]['magnetlink'] = torrent['sky']['results']['0']['magnet']
         movie_list[movie]['magnetlinktitle'] = torrent['sky']['results']['0']['name'] + ' ratio: ' + torrent['sky']['results']['0']['ratio'] + ' seeders: '+ torrent['sky']['results']['0']['seeders']
         print('magnetlinktitle: '+ movie_list[movie]['magnetlinktitle'])
         print('magnetlink: \n'+ movie_list[movie]['magnetlink'])
-    except:
+    except Exception as e:
+        print(e)
         movie_list[movie]['magnetlink'] = 'N/A'
         movie_list[movie]['magnetlinktitle'] = 'N/A'
         print('magnetlinktitle: '+ movie_list[movie]['magnetlinktitle'])
         print('magnetlink: '+ movie_list[movie]['magnetlink'])
-    
-    print('----------------------------------------------------')
-    print('####################################################')
-    print(' ')
+        print('####################################################')
