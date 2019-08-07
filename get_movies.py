@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import subprocess
 import ast
 import requests
+import json
 
 r = requests.get('https://mubi.com/showing')
 soup = BeautifulSoup(r.text,'html.parser')
@@ -57,3 +58,6 @@ for movie in range(0,len(movies)):
         print('magnetlinktitle: '+ movie_list[movie]['magnetlinktitle'])
         print('magnetlink: '+ movie_list[movie]['magnetlink'])
         print('####################################################')
+
+with open('movie_list.json','w') as f:
+    json.dump(movie_list, f, indent=4, sort_keys=False)
