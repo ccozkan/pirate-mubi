@@ -1,13 +1,17 @@
 # pirate-mubi
 
-This one scrapes movies from the mubi.com now showing page, then looks for magnet links for those and hopefully finds them :D
+Arr! This one scrapes movies from the mubi.com now showing page, then looks for magnet links for those and hopefully finds them :D
 
 You'll need to have torrent-hound in your system in order to search for magnet links. 
-Install the required packages
 
 
 ```
-wget https://raw.githubusercontent.com/baddymaster/torrent-hound/master/torrent-hound.py
+git clone https://github.com/ozkc/pirate-mubi
+cd pirate-mubi/
+
+curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/torrent-hound.py > torrent-hound.py
+curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/requirements >> requirements
+
 pip3 install --user -r requirements.txt
 ```
 Run the command and to get the output 
@@ -16,14 +20,11 @@ Run the command and to get the output
 python3 get_movies.py
 ```
 
-It saves output as json file too. But if you want to go traditional way you can save the output as text file in linux systems.
+It saves output as a json file too.
 
-```
-python3 get_movies.py > output.txt
-```
 Example output looks like this.
 
 <center>
-<img src="http://i68.tinypic.com/icl6c1.png" width="700" />
+<img src="https://raw.githubusercontent.com/ozkc/pirate-mubi/master/screenshot.png" width="700" />
 </center>
 
