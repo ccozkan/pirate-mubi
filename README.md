@@ -10,7 +10,7 @@ git clone https://github.com/ozkc/pirate-mubi
 cd pirate-mubi/
 
 curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/torrent-hound.py > torrent-hound.py
-curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/requirements >> requirements.txt
+curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/requirements.txt >> requirements.txt
 
 pip3 install --user -r requirements.txt
 ```
