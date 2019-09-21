@@ -24,7 +24,7 @@ for movie in range(0,len(movies)):
     movie_list[movie]['year'] = (yearcountry).split(', ',2)[1]
     movie_list[movie]['country'] = (yearcountry).split(', ',2)[0]
     movie_list[movie]['poster'] = (movies[movie].a.get('data-film-still-url'))
-    
+
     print('####################################################')
     print(' ')
     print('title: ' + movie_list[movie]['title'])
@@ -33,10 +33,9 @@ for movie in range(0,len(movies)):
     print('year: ' + movie_list[movie]['year'])
     print('country: ' + movie_list[movie]['country'])
     print('poster: ' + movie_list[movie]['poster'])
-    
     print('----------------------------------------------------')
 
-    try: 
+    try:
         title = movie_list[movie]['title']
         year = movie_list[movie]['year']
 
