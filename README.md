@@ -10,9 +10,11 @@ git clone https://github.com/ozkc/pirate-mubi
 cd pirate-mubi/
 
 curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/torrent-hound.py > torrent-hound.py
-curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/requirements.txt >> requirements.txt
+curl https://raw.githubusercontent.com/baddymaster/torrent-hound/master/requirements.txt > requirements_for_th.txt
 
+pip2 install --user -r requirements_for_th.txt
 pip3 install --user -r requirements.txt
+
 ```
 Run the command and to get the output 
 
