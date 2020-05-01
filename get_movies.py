@@ -1,29 +1,28 @@
-from bs4 import BeautifulSoup
-import subprocess
-import ast
 import requests
+import subprocess
 import json
+import ast
 
-r = requests.get('https://mubi.com/showing')
-soup = BeautifulSoup(r.text,'html.parser')
-#htmldoc = open('showing.html','r').read()
-#soup = BeautifulSoup(htmldoc,'html.parser')
+r = requests.get('https://mubi.com/showing').text
 
-movies = soup.findAll("article",{"class": "full-width-tile full-width-tile--now-showing"})
+r = r.split('</script><script nomodule="" src="/_next/', 2)[0].split('script id="__NEXT_DATA__" type="application/json">', 2)[1]
+d = json.loads(r)
+m = d['props']['initialState']['filmProgramming']['filmProgrammingsByChannel']['0']
 
+movies = []
 movie_list = {}
 
-spans_yearcountry = soup.find_all("span", {"class": "now-showing-tile-director-year__year-country light-on-dark"})
+for movie in range(0, len(m)):
+    movies.append(m[movie]['film'])
+
 
 for movie in range(0,len(movies)):
     movie_list[movie] = {}
-    movie_list[movie]['title'] = movies[movie].h2.text
-    movie_list[movie]['director'] = movies[movie].find('span', {'class': 'riforma-header'}).text
-    movie_list[movie]['plot'] = movies[movie].p.text
-    yearcountry = movies[movie].find("span", {"class": "now-showing-tile-director-year__year-country light-on-dark"}).text
-    movie_list[movie]['year'] = (yearcountry).split(', ',2)[1]
-    movie_list[movie]['country'] = (yearcountry).split(', ',2)[0]
-    movie_list[movie]['poster'] = (movies[movie].a.get('data-film-still-url'))
+    movie_list[movie]['title'] = movies[movie]['title']
+    movie_list[movie]['director'] = movies[movie]['directors']
+    movie_list[movie]['plot'] = movies[movie]['short_synopsis']
+    movie_list[movie]['year'] = str(movies[movie]['year'])
+    movie_list[movie]['country'] = movies[movie]['country']
 
     print('####################################################')
     print(' ')
@@ -32,7 +31,6 @@ for movie in range(0,len(movies)):
     print('plot: ' + movie_list[movie]['plot'])
     print('year: ' + movie_list[movie]['year'])
     print('country: ' + movie_list[movie]['country'])
-    print('poster: ' + movie_list[movie]['poster'])
     print('----------------------------------------------------')
 
     try:
